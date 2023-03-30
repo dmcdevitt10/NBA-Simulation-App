@@ -1,28 +1,42 @@
 let nameInput = document.getElementById('name')
 let addPlTeam1 = document.getElementById('team1')
 let addPlTeam2 = document.getElementById('team2')
+
 let season = document.getElementById('season')
+
 let seeTeam1Btn = document.getElementById('see-team1')
 let seeTeam2Btn = document.getElementById('see-team2')
+
 let simulateBtn = document.getElementById('simulate')
+
 let saveTeam1Btn = document.getElementById('save-team1')
 let saveTeam2Btn = document.getElementById('save-team2')
-let team1Form = document.getElementById('team1-form')
-let getSavedBtn = document.getElementById('get-saved')
+let teamNameInput = document.getElementById('team-name-input')
+
+let deleteTeamInput = document.getElementById('delete-team-input')
+let deleteTeamBtn = document.getElementById('delete-button')
+
+let useSavedInput = document.getElementById('use-saved-input')
+let useSavedBtn1 = document.getElementById('use-saved-button1')
+let useSavedBtn2 = document.getElementById('use-saved-button2')
+
+let newGameBtn = document.getElementById('new-game')
+
 
 let team1 = []
 let team2 = []
-let team1names = []
-let team2names = []
+let team1Names = []
+let team2Names = []
 
 function addToTeam1(){
     let nameArr = nameInput.value.split(' ')
     let nameUnderscore = nameArr[0] + '_' + nameArr[1]
 
+    let seasonValue = season.value[0] + season.value[1] + season.value[2] + season.value[3]
+
     axios.get(`https://www.balldontlie.io/api/v1/players?search=${nameUnderscore}`).then((res) => {
         let playerId = '' + res.data.data[0].id
         let seasonAveragesURL = `https://www.balldontlie.io/api/v1/season_averages?player_ids[]=${playerId}`
-        let seasonValue = season.value[0] + season.value[1] + season.value[2] + season.value[3]
         
         if(season.value !== 'Current Season'){
             seasonAveragesURL = `https://www.balldontlie.io/api/v1/season_averages?` + `season=${seasonValue}&` + `player_ids[]=${playerId}`
@@ -32,7 +46,7 @@ function addToTeam1(){
             team1.push(res.data.data[0])
         })
     })
-    team1names.push(nameInput.value)
+    team1Names.push([nameInput.value, seasonValue])
     nameInput.value = ''
 }
 
@@ -52,7 +66,7 @@ function addToTeam2(){
             team2.push(res.data.data[0])
         })
     })
-    team2names.push([nameInput.value, seasonValue])
+    team2Names.push([nameInput.value, seasonValue])
     nameInput.value = ''
 }
 
@@ -255,33 +269,131 @@ function simulateGame(){
     // console.log(team2Av)
 }
 
-function saveTeam1(e){
-    e.preventDefault()
-
+function saveTeam1(){
     let body = {
-        player1: team1names[0],
-        player2: team1names[1],
-        player3: team1names[2],
-        player4: team1names[3],
-        player5: team1names[4],
+        teamName: teamNameInput.value,
+        player1: team1Names[0],
+        player2: team1Names[1],
+        player3: team1Names[2],
+        player4: team1Names[3],
+        player5: team1Names[4]
     }
     axios.post('http://localhost:5020/save-team-1', body).catch(err => console.log(err))
+    teamNameInput.value = ''
 }
 
-function getSavedTeam(){
-    axios.get('http://localhost:5020/get-saved-team').then((res) => {
-        console.log(res.data)
+function saveTeam2(){
+    let body = {
+        teamName: teamNameInput.value,
+        player1: team2Names[0],
+        player2: team2Names[1],
+        player3: team2Names[2],
+        player4: team2Names[3],
+        player5: team2Names[4]
+    }
+    axios.post('http://localhost:5020/save-team-2', body).catch(err => console.log(err))
+    teamNameInput.value = ''
+}
+
+function useSavedTeamFor1(){
+    let teamName = useSavedInput.value
+    axios.get(`http://localhost:5020/use-saved1/${teamName}`).then((res) => {
+        for(let i = 1; i < 6; i++){
+            if(res.data[0][`player_${i}`] !== 'undefined'){
+                let splitData = (res.data[0][`player_${i}`]).split(',')
+                let nameUnderscore = splitData[0]
+                let season = splitData[1]
+
+
+
+
+                axios.get(`https://www.balldontlie.io/api/v1/players?search=${nameUnderscore}`).then((res) => {
+                    let playerId = '' + res.data.data[0].id
+                    let seasonAveragesURL = `https://www.balldontlie.io/api/v1/season_averages?player_ids[]=${playerId}`
+        
+                    if(season !== 'Curr'){
+                        seasonAveragesURL = `https://www.balldontlie.io/api/v1/season_averages?` + `season=${season}&` + `player_ids[]=${playerId}`
+                    }
+        
+                    axios.get(seasonAveragesURL).then((res) => {
+                        team1.push(res.data.data[0])
+                    })
+
+                })
+
+
+
+
+
+            }
+        }
+        
     }).catch(err => console.log(err))
+    useSavedInput.value = ''
+}
+
+function useSavedTeamFor2(){
+    let teamName = useSavedInput.value
+    axios.get(`http://localhost:5020/use-saved2/${teamName}`).then((res) => {
+        for(let i = 1; i < 6; i++){
+            if(res.data[0][`player_${i}`] !== 'undefined'){
+                let splitData = (res.data[0][`player_${i}`]).split(',')
+                let nameUnderscore = splitData[0]
+                let season = splitData[1]
+
+
+
+
+                axios.get(`https://www.balldontlie.io/api/v1/players?search=${nameUnderscore}`).then((res) => {
+                    let playerId = '' + res.data.data[0].id
+                    let seasonAveragesURL = `https://www.balldontlie.io/api/v1/season_averages?player_ids[]=${playerId}`
+        
+                    if(season !== 'Curr'){
+                        seasonAveragesURL = `https://www.balldontlie.io/api/v1/season_averages?` + `season=${season}&` + `player_ids[]=${playerId}`
+                    }
+        
+                    axios.get(seasonAveragesURL).then((res) => {
+                        team2.push(res.data.data[0])
+                    })
+
+                })
+
+
+
+
+
+            }
+        }
+        
+    }).catch(err => console.log(err))
+    useSavedInput.value = ''
+}
+
+function deleteTeam(){
+    let teamName = deleteTeamInput.value
+    axios.delete(`http://localhost:5020/delete/${teamName}`).catch(err => console.log(err))
+    deleteTeamInput.value = ''
+}
+
+function newGame(){
+    team1 = []
+    team2 = []
+    team1names = []
+    team2names = []
 }
 
 
 addPlTeam1.addEventListener('click', addToTeam1)
 addPlTeam2.addEventListener('click', addToTeam2)
 simulateBtn.addEventListener('click', simulateGame)
-team1Form.addEventListener('submit', saveTeam1)
-getSavedBtn.addEventListener('click', getSavedTeam)
+saveTeam1Btn.addEventListener('click', saveTeam1)
+saveTeam2Btn.addEventListener('click', saveTeam2)
+useSavedBtn1.addEventListener('click', useSavedTeamFor1)
+useSavedBtn2.addEventListener('click', useSavedTeamFor2)
+deleteTeamBtn.addEventListener('click', deleteTeam)
+newGameBtn.addEventListener('click', newGame)
 
 
 
-seeTeam1Btn.addEventListener('click', () => console.log(team1names))
+seeTeam1Btn.addEventListener('click', () => console.log(team1))
 seeTeam2Btn.addEventListener('click', () => console.log(team2))

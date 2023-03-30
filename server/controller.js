@@ -31,19 +31,46 @@ sequelize = new Sequelize(CONNECTION_URL, {
         }).catch(err => console.log('error seeding DB,', err))
     },
     saveTeam1: (req, res) => {
-        const {player1, player2, player3, player4, player5} = req.body
+        const {teamName, player1, player2, player3, player4, player5} = req.body
         sequelize.query(`
             INSERT INTO teams (team_name, player_1, player_2, player_3, player_4, player_5)
-            VALUES ('', '${player1}', '${player2}', '${player3}', '${player4}', '${player5}');
+            VALUES ('${teamName}', '${player1}', '${player2}', '${player3}', '${player4}', '${player5}');
         `).then((dbRes) => {
             res.status(200).send(dbRes[0])
         }).catch(err => console.log(err))
     },
-    getSavedTeam:(req, res) => {
+    saveTeam2: (req, res) => {
+        const {teamName, player1, player2, player3, player4, player5} = req.body
+        sequelize.query(`
+            INSERT INTO teams (team_name, player_1, player_2, player_3, player_4, player_5)
+            VALUES ('${teamName}', '${player1}', '${player2}', '${player3}', '${player4}', '${player5}');
+        `).then((dbRes) => {
+            res.status(200).send(dbRes[0])
+        }).catch(err => console.log(err))
+    },
+    useSaved1:(req, res) => {
+        const {teamName} = req.params
         sequelize.query(`
             SELECT * FROM teams
+            WHERE team_name = '${teamName}';
         `).then(dbres => {
             res.status(200).send(dbres[0])
         }).catch(err => console.log(err))
+    },
+    useSaved2: (req, res) => {
+        const {teamName} = req.params
+        sequelize.query(`
+            SELECT * FROM teams
+            WHERE team_name = '${teamName}';
+        `).then(dbres => {
+            res.status(200).send(dbres[0])
+        }).catch(err => console.log(err))
+    },
+    deleteTeam: (req, res) => {
+        const {teamName} = req.params
+        sequelize.query(`
+            DELETE FROM teams
+            WHERE team_name = '${teamName}';
+        `)
     }
   }

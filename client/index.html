@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
-    <input id="name" placeholder="player name">
+    <input id="name" placeholder="Player Name">
     <button id="team1">Add player to team1</button>
     <button id="team2">Add player to team2</button>
     <select id="season">
@@ -57,14 +57,25 @@
         <option>1980-81</option>
         <option>1979-80</option>
     </select>
+
     <button id="see-team1">See team1</button>
     <button id="see-team2">See team2</button>
+
     <button id="simulate">Simulate</button>
-    <form id="team1-form">
-        <button id="save-team1">Save Team1</button>
-    </form>
+
+    <button id="save-team1">Save Team1</button>
     <button id="save-team2">Save Team2</button>
-    <button id="get-saved">Get Saved</button>
+    <input id="team-name-input" placeholder="Team Name">
+
+    <input id="delete-team-input" placeholder="Delete Team">
+    <button id="delete-button">Delete Team</button>
+
+    <input id="use-saved-input" placeholder="Team Name">
+    <button id="use-saved-button1">Use for team 1</button>
+    <button id="use-saved-button2">Use for team 2</button>
+
+    <button id="new-game">New Game</button>
+
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="index.js"></script>
 </body>
