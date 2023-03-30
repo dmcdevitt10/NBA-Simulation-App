@@ -15,6 +15,7 @@ sequelize = new Sequelize(CONNECTION_URL, {
   module.exports = {
     seed: (req, res) => {
         sequelize.query(`
+            DROP TABLE IF EXISTS teams;
             CREATE TABLE teams (
                 team_id SERIAL PRIMARY KEY,
                 team_name VARCHAR,
@@ -28,5 +29,21 @@ sequelize = new Sequelize(CONNECTION_URL, {
             console.log('DB seeded')
             res.sendStatus(200)
         }).catch(err => console.log('error seeding DB,', err))
+    },
+    saveTeam1: (req, res) => {
+        const {player1, player2, player3, player4, player5} = req.body
+        sequelize.query(`
+            INSERT INTO teams (team_name, player_1, player_2, player_3, player_4, player_5)
+            VALUES ('', '${player1}', '${player2}', '${player3}', '${player4}', '${player5}');
+        `).then((dbRes) => {
+            res.status(200).send(dbRes[0])
+        }).catch(err => console.log(err))
+    },
+    getSavedTeam:(req, res) => {
+        sequelize.query(`
+            SELECT * FROM teams
+        `).then(dbres => {
+            res.status(200).send(dbres[0])
+        }).catch(err => console.log(err))
     }
   }

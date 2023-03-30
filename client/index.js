@@ -5,9 +5,15 @@ let season = document.getElementById('season')
 let seeTeam1Btn = document.getElementById('see-team1')
 let seeTeam2Btn = document.getElementById('see-team2')
 let simulateBtn = document.getElementById('simulate')
+let saveTeam1Btn = document.getElementById('save-team1')
+let saveTeam2Btn = document.getElementById('save-team2')
+let team1Form = document.getElementById('team1-form')
+let getSavedBtn = document.getElementById('get-saved')
 
 let team1 = []
 let team2 = []
+let team1names = []
+let team2names = []
 
 function addToTeam1(){
     let nameArr = nameInput.value.split(' ')
@@ -26,6 +32,7 @@ function addToTeam1(){
             team1.push(res.data.data[0])
         })
     })
+    team1names.push(nameInput.value)
     nameInput.value = ''
 }
 
@@ -33,10 +40,11 @@ function addToTeam2(){
     let nameArr = nameInput.value.split(' ')
     let nameUnderscore = nameArr[0] + '_' + nameArr[1]
 
+    let seasonValue = season.value[0] + season.value[1] + season.value[2] + season.value[3]
+
     axios.get(`https://www.balldontlie.io/api/v1/players?search=${nameUnderscore}`).then((res) => {
         let playerId = '' + res.data.data[0].id
         let seasonAveragesURL = `https://www.balldontlie.io/api/v1/season_averages?player_ids[]=${playerId}`
-        let seasonValue = season.value[0] + season.value[1] + season.value[2] + season.value[3]
         if(season.value !== 'Current Season'){
             seasonAveragesURL = `https://www.balldontlie.io/api/v1/season_averages?` + `season=${seasonValue}&` + `player_ids[]=${playerId}`
         }
@@ -44,6 +52,7 @@ function addToTeam2(){
             team2.push(res.data.data[0])
         })
     })
+    team2names.push([nameInput.value, seasonValue])
     nameInput.value = ''
 }
 
@@ -246,11 +255,33 @@ function simulateGame(){
     // console.log(team2Av)
 }
 
+function saveTeam1(e){
+    e.preventDefault()
+
+    let body = {
+        player1: team1names[0],
+        player2: team1names[1],
+        player3: team1names[2],
+        player4: team1names[3],
+        player5: team1names[4],
+    }
+    axios.post('http://localhost:5020/save-team-1', body).catch(err => console.log(err))
+}
+
+function getSavedTeam(){
+    axios.get('http://localhost:5020/get-saved-team').then((res) => {
+        console.log(res.data)
+    }).catch(err => console.log(err))
+}
+
+
 addPlTeam1.addEventListener('click', addToTeam1)
 addPlTeam2.addEventListener('click', addToTeam2)
 simulateBtn.addEventListener('click', simulateGame)
+team1Form.addEventListener('submit', saveTeam1)
+getSavedBtn.addEventListener('click', getSavedTeam)
 
 
 
-seeTeam1Btn.addEventListener('click', () => console.log(team1))
+seeTeam1Btn.addEventListener('click', () => console.log(team1names))
 seeTeam2Btn.addEventListener('click', () => console.log(team2))
