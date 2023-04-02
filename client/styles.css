@@ -1,0 +1,163 @@
+body {
+    background-color: rgb(237, 233, 233);
+    display: flex;
+    margin: 0;
+}
+
+header {
+    position: absolute;
+    background-color: #F98E23;
+    height: 90px;
+    width: 100%;
+    top: 0px;
+}
+
+nav {
+    position: absolute;
+    right:110px;
+    bottom: 0px;
+}
+
+ol {
+    padding-left: 0;
+}
+
+.pages {
+    color: rgb(237, 233, 233);
+    display: inline;
+    margin-right: 2em;
+}
+
+a {
+    font-size: 19px;
+}
+
+a:visited {
+    border-bottom: 2px solid;
+}
+
+
+.inputs-bar {
+    /* background-color: blue; */
+    position: absolute;
+    display: flex;
+    height: 90px;
+    width: 100%;
+    top: 0px;
+}
+
+.teams-header {
+    position: absolute;
+    /* background-color: aqua; */
+    height: 90px;
+    width: 250px;
+}
+
+.saved-tag {
+    position: absolute;
+    top: 35px;
+    left: 1px;
+    font-size: 27px;
+}
+
+.right {
+    position: absolute;
+    height: 90px;
+    width: 738.5px;
+    right: 0px;
+}
+
+
+
+.player-input {
+    position: absolute;
+    top: 35px;
+    left: 1px;
+    width: 115px;
+}
+
+.season {
+    position: absolute;
+    top: 35px;
+    left: 126px;
+    height: 21px;
+    width: 55px;
+}
+
+.add1 {
+    position: absolute;
+    bottom: 4px;
+    left: 1px;
+}
+
+.add2 {
+    position: absolute;
+    bottom: 4px;
+    left: 93px;
+}
+
+
+
+.save1 {
+    position: absolute;
+    top: 35px;
+    left: 34%;
+}
+
+.save2 {
+    position: absolute;
+    top: 35px;
+    left: 50%;
+}
+
+.team-input {
+    position: absolute;
+    bottom: 4px;
+    left: 42%;
+    width: 115px;
+}
+
+.simulate {
+    position: absolute;
+    right: 1px;
+    top: 35px;
+}
+
+
+
+.new-game{
+    position: absolute;
+    right: 1px;
+    bottom: 4px;
+}
+
+.court-teams {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    height: 490px;
+    width: 991.5px;
+    top: 150px;
+    left: 225px;
+    /* box-shadow: 7px 7px 15px rgb(71, 69, 69); */
+    z-index: -1;
+}
+
+.court {
+    position: absolute;
+    height:400px;
+    width: 738.5px;
+    left: 253px;
+    bottom: 0px;
+    z-index: -1;
+    
+}
+
+
+.teams {
+    position: absolute;
+    background-color: rgb(182, 23, 23);
+    height: 400px;
+    width: 250px;
+    bottom: 0px;
+}

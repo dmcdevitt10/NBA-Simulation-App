@@ -44,8 +44,8 @@ function addToTeam1(){
         
         axios.get(seasonAveragesURL).then((res) => {
             team1.push(res.data.data[0])
-        })
-    })
+        }).catch(err => console.log(err))
+    }).catch(err => console.log(err))
     team1Names.push([nameInput.value, seasonValue])
     nameInput.value = ''
 }
@@ -64,8 +64,8 @@ function addToTeam2(){
         }
         axios.get(seasonAveragesURL).then((res) => {
             team2.push(res.data.data[0])
-        })
-    })
+        }).catch(err => console.log(err))
+    }).catch(err => console.log(err))
     team2Names.push([nameInput.value, seasonValue])
     nameInput.value = ''
 }
@@ -301,10 +301,9 @@ function useSavedTeamFor1(){
         for(let i = 1; i < 6; i++){
             if(res.data[0][`player_${i}`] !== 'undefined'){
                 let splitData = (res.data[0][`player_${i}`]).split(',')
+                team1Names.push(splitData)
                 let nameUnderscore = splitData[0]
                 let season = splitData[1]
-
-
 
 
                 axios.get(`https://www.balldontlie.io/api/v1/players?search=${nameUnderscore}`).then((res) => {
@@ -317,14 +316,8 @@ function useSavedTeamFor1(){
         
                     axios.get(seasonAveragesURL).then((res) => {
                         team1.push(res.data.data[0])
-                    })
-
-                })
-
-
-
-
-
+                    }).catch(err => console.log(err))
+                }).catch(err => console.log(err))
             }
         }
         
@@ -338,6 +331,7 @@ function useSavedTeamFor2(){
         for(let i = 1; i < 6; i++){
             if(res.data[0][`player_${i}`] !== 'undefined'){
                 let splitData = (res.data[0][`player_${i}`]).split(',')
+                team2Names.push(splitData)
                 let nameUnderscore = splitData[0]
                 let season = splitData[1]
 
@@ -354,14 +348,8 @@ function useSavedTeamFor2(){
         
                     axios.get(seasonAveragesURL).then((res) => {
                         team2.push(res.data.data[0])
-                    })
-
-                })
-
-
-
-
-
+                    }).catch(err => console.log(err))
+                }).catch(err => console.log(err))
             }
         }
         
@@ -378,8 +366,8 @@ function deleteTeam(){
 function newGame(){
     team1 = []
     team2 = []
-    team1names = []
-    team2names = []
+    team1Names = []
+    team2Names = []
 }
 
 

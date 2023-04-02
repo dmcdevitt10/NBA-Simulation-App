@@ -8,7 +8,103 @@
     <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
-    <input id="name" placeholder="Player Name">
+    <header>
+        <button id="see-team1">See team1</button>
+        <button id="see-team2">See team2</button>
+
+        <input id="delete-team-input" placeholder="Delete Team">
+        <button id="delete-button">Delete Team</button>
+
+        <input id="use-saved-input" placeholder="Team Name">
+        <button id="use-saved-button1">Use for team 1</button>
+        <button id="use-saved-button2">Use for team 2</button>
+
+
+
+
+        <nav>
+            <ol>
+                <li class="pages"><a>Home</a></li>
+                <li class="pages"><a>Teams</a></li>
+                <li class="pages"><a>Stats</a></li>
+            </ol>
+        </nav>
+    </header>
+    <div class="court-teams">
+        <section class="inputs-bar">
+            <aside class="teams-header">
+                <h1 class="saved-tag">Saved Teams</h1>
+            </aside>
+            <aside class="right">
+                <input id="name" class="player-input" placeholder="Player Name">
+                <select id="season" class="season">
+                    <option>Current Season</option>
+                    <option>2021-22</option>
+                    <option>2020-21</option>
+                    <option>2019-20</option>
+                    <option>2018-19</option>
+                    <option>2017-18</option>
+                    <option>2016-17</option>
+                    <option>2015-16</option>
+                    <option>2014-15</option>
+                    <option>2013-14</option>
+                    <option>2012-13</option>
+                    <option>2011-12</option>
+                    <option>2010-11</option>
+                    <option>2009-10</option>
+                    <option>2008-09</option>
+                    <option>2007-08</option>
+                    <option>2006-07</option>
+                    <option>2005-06</option>
+                    <option>2004-05</option>
+                    <option>2003-04</option>
+                    <option>2002-03</option>
+                    <option>2001-02</option>
+                    <option>2000-01</option>
+                    <option>1999-00</option>
+                    <option>1998-99</option>
+                    <option>1997-98</option>
+                    <option>1996-97</option>
+                    <option>1995-96</option>
+                    <option>1994-95</option>
+                    <option>1993-94</option>
+                    <option>1992-93</option>
+                    <option>1991-92</option>
+                    <option>1990-91</option>
+                    <option>1989-90</option>
+                    <option>1988-89</option>
+                    <option>1987-88</option>
+                    <option>1986-87</option>
+                    <option>1985-86</option>
+                    <option>1984-85</option>
+                    <option>1983-84</option>
+                    <option>1982-83</option>
+                    <option>1981-82</option>
+                    <option>1980-81</option>
+                    <option>1979-80</option>
+                </select>
+                <button id="team1" class="add1">add to home</button>
+                <button id="team2" class="add2">add to away</button>
+
+                <button id="save-team1" class="save1">Save home team</button>
+                <button id="save-team2" class="save2">Save away team</button>
+                <input id="team-name-input" class="team-input" placeholder="Team Name">
+
+                <button id="simulate" class="simulate">Simulate</button>
+                <button id="new-game" class="new-game">New Game</button>
+            </aside>
+        </section>
+        <div class="teams"></div>
+        <img src="orange1-court.png" class="court">
+    </div>
+
+
+
+
+
+
+
+    <!-- <input id="name" placeholder="Player Name">
     <button id="team1">Add player to team1</button>
     <button id="team2">Add player to team2</button>
     <select id="season">
@@ -74,7 +170,7 @@
     <button id="use-saved-button1">Use for team 1</button>
     <button id="use-saved-button2">Use for team 2</button>
 
-    <button id="new-game">New Game</button>
+    <button id="new-game">New Game</button> -->
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="index.js"></script>
