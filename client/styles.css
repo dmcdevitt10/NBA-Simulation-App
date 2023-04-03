@@ -4,37 +4,48 @@ body {
     margin: 0;
 }
 
+
+
 header {
     position: absolute;
     background-color: #F98E23;
     height: 90px;
     width: 100%;
     top: 0px;
+    border-bottom: 1px solid #000000;
 }
 
 nav {
     position: absolute;
     right:110px;
-    bottom: 0px;
+    bottom: 10px;
 }
 
-ol {
-    padding-left: 0;
-}
-
-.pages {
+.page {
     color: rgb(237, 233, 233);
+    font-size: 19px;
     display: inline;
     margin-right: 2em;
 }
 
-a {
-    font-size: 19px;
+.page:hover {
+    color: rgb(203, 201, 201);
 }
 
-a:visited {
-    border-bottom: 2px solid;
+
+
+.court-teams {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    height: 490px;
+    width: 991.5px;
+    top: 150px;
+    left: 225px;
+    /* box-shadow: 7px 7px 15px rgb(71, 69, 69); */
+    z-index: -1;
 }
+
 
 
 .inputs-bar {
@@ -117,31 +128,20 @@ a:visited {
     width: 115px;
 }
 
+
+
 .simulate {
     position: absolute;
     right: 1px;
     top: 35px;
 }
-
-
-
 .new-game{
     position: absolute;
     right: 1px;
     bottom: 4px;
 }
 
-.court-teams {
-    position: absolute;
-    display: flex;
-    flex-direction: row;
-    height: 490px;
-    width: 991.5px;
-    top: 150px;
-    left: 225px;
-    /* box-shadow: 7px 7px 15px rgb(71, 69, 69); */
-    z-index: -1;
-}
+
 
 .court {
     position: absolute;
@@ -149,15 +149,17 @@ a:visited {
     width: 738.5px;
     left: 253px;
     bottom: 0px;
+    border: 1px solid black;
     z-index: -1;
     
 }
 
-
 .teams {
     position: absolute;
-    background-color: rgb(182, 23, 23);
+    background-color: rgb(170, 168, 168);
     height: 400px;
     width: 250px;
     bottom: 0px;
+    border: 1px solid black;
+    z-index: -1;
 }
