@@ -22,6 +22,8 @@ let useSavedBtn2 = document.getElementById('use-saved-button2')
 
 let newGameBtn = document.getElementById('new-game')
 
+let h1 = document.getElementById('winner')
+
 
 let team1 = []
 let team2 = []
@@ -48,7 +50,19 @@ function addToTeam1(){
     }).catch(err => console.log(err))
     team1Names.push([nameInput.value, seasonValue])
     nameInput.value = ''
+
+    for(let i = 0; i < team1Names.length; i++){
+        if(team1Names[i]){
+            let h3 = document.getElementById(`1team${i}`)
+            if(team1Names[i][1] === 'Curr'){
+                h3.innerText = team1Names[i][0] + ' ' + '2022-23'
+            }else{
+                h3.innerText = team1Names[i][0] + ' ' + team1Names[i][1] + season.value[4] + season.value[5] + season.value[6]
+            }
+        }
+    }
 }
+
 
 function addToTeam2(){
     let nameArr = nameInput.value.split(' ')
@@ -68,6 +82,17 @@ function addToTeam2(){
     }).catch(err => console.log(err))
     team2Names.push([nameInput.value, seasonValue])
     nameInput.value = ''
+
+    for(let i = 0; i < team2Names.length; i++){
+        if(team2Names[i]){
+            let h3 = document.getElementById(`2team${i}`)
+            if(team2Names[i][1] === 'Curr'){
+                h3.innerText = team2Names[i][0] + ' ' + '2022-23'
+            }else{
+                h3.innerText = team2Names[i][0] + ' ' + team2Names[i][1] + season.value[4] + season.value[5] + season.value[6]
+            }
+        }
+    }
 }
 
 function simulateGame(){
@@ -248,25 +273,19 @@ function simulateGame(){
         }
     }
 
-    // console.log(team1Score)
-    // console.log(team2Score)
-
     if(team1Score === team2Score){
         if(team1Av[9] > team2Av[9]){
-            console.log('Team 1 wins')
+            h1.innerText = 'Team 1 Wins!'
         }else{
-            console.log('Team 2 wins')
+            h1.innerText = 'Team 2 Wins!'
         }
     }else{
         if(team1Score > team2Score){
-            console.log('Team 1 wins')
+            h1.innerText = 'Team 1 Wins!'
         }else{
-            console.log('Team 2 wins')
+            h1.innerText = 'Team 2 Wins!'
         }
     }
-
-    // console.log(team1Av)
-    // console.log(team2Av)
 }
 
 function saveTeam1(){
@@ -364,11 +383,27 @@ function deleteTeam(){
 }
 
 function newGame(){
+    for(let i = 0; i < team1Names.length; i++){
+        if(team1Names[i]){
+            let h3 = document.getElementById(`1team${i}`)
+            h3.innerText = ''
+        }
+    }
+    for(let i = 0; i < team2Names.length; i++){
+        if(team2Names[i]){
+            let h3 = document.getElementById(`2team${i}`)
+            h3.innerText = ''
+        }
+    }
+
+    h1.innerText = ''
+
     team1 = []
     team2 = []
     team1Names = []
     team2Names = []
 }
+
 
 
 addPlTeam1.addEventListener('click', addToTeam1)

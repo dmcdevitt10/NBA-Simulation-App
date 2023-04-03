@@ -163,3 +163,64 @@ nav {
     border: 1px solid black;
     z-index: -1;
 }
+
+
+.game {
+    position: absolute;
+    /* background-color: aqua; */
+    height: 400px;
+    width: 737px;
+    bottom: 0px;
+    right: 0px;
+    display: flex;
+    flex-direction: row;
+}
+
+.names {
+    height: 400px;
+    width: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#team1-big {
+    position: absolute;
+    left: 8%;
+}
+
+#team1-small {
+    position: absolute;
+    left: 22%;
+}
+
+#team2-small {
+    position: absolute;
+    right: 22%;
+}
+
+#team2-big {
+    position: absolute;
+    right: 6%;
+}
+
+.home {
+    position: absolute;
+    left: 4px;
+    top: -23px;
+    font-size: 30px;
+}
+
+.away {
+    position: absolute;
+    right: 4px;
+    top: -26px;
+    font-size: 30px;
+}
+
+.winner {
+    position: absolute;
+    left: 35.38%;
+    top: 38%;
+    font-size: 38px;
+}
