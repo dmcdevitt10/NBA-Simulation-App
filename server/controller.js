@@ -66,6 +66,13 @@ sequelize = new Sequelize(CONNECTION_URL, {
             res.status(200).send(dbres[0])
         }).catch(err => console.log(err))
     },
+    getSaved: (req, res) => {
+        sequelize.query(`
+            SELECT * FROM teams
+        `).then(dbres => {
+            res.status(200).send(dbres[0])
+        }).catch(err => console.log(err))
+    },
     deleteTeam: (req, res) => {
         const {teamName} = req.params
         sequelize.query(`

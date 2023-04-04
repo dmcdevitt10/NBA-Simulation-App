@@ -19,16 +19,79 @@ let deleteTeamBtn = document.getElementById('delete-button')
 let useSavedInput = document.getElementById('use-saved-input')
 let useSavedBtn1 = document.getElementById('use-saved-button1')
 let useSavedBtn2 = document.getElementById('use-saved-button2')
+// let useSavedBtn1 = document.getElementById('use1')
+// let useSavedBtn2 = document.getElementById('use2')
+
 
 let newGameBtn = document.getElementById('new-game')
 
 let h1 = document.getElementById('winner')
+
+let allTeams = document.getElementById('all-teams')
+
+
 
 
 let team1 = []
 let team2 = []
 let team1Names = []
 let team2Names = []
+
+function displayTeam1(){
+    for(let i = 0; i < team1Names.length; i++){
+        if(team1Names[i]){
+            let h3 = document.getElementById(`1team${i}`)
+            if(team1Names[i][1] === 'Curr'){
+                h3.innerText = team1Names[i][0] + ' ' + '2022-23'
+            }else{
+                h3.innerText = team1Names[i][0] + ' ' + team1Names[i][1] + season.value[4] + season.value[5] + season.value[6]
+            }
+        }
+    }
+}
+
+function displayTeam2(){
+    for(let i = 0; i < team2Names.length; i++){
+        if(team2Names[i]){
+            let h3 = document.getElementById(`2team${i}`)
+            if(team2Names[i][1] === 'Curr'){
+                h3.innerText = team2Names[i][0] + ' ' + '2022-23'
+            }else{
+                h3.innerText = team2Names[i][0] + ' ' + team2Names[i][1] + season.value[4] + season.value[5] + season.value[6]
+            }
+        }
+    }
+}
+
+function displaySaved1(){
+    for(let i = 0; i < team1Names.length; i++){
+        let num = +(team1Names[i][1][2] + team1Names[i][1][3])
+        let realNum = num + 1
+        if(team1Names[i]){
+            let h3 = document.getElementById(`1team${i}`)
+            if(team1Names[i][1] === 'Curr'){
+                h3.innerText = team1Names[i][0] + ' ' + '2022-23'
+            }else{
+                h3.innerText = team1Names[i][0] + ' ' + team1Names[i][1] + '-' + realNum
+            }
+        }
+    }
+}
+
+function displaySaved2(){
+    for(let i = 0; i < team2Names.length; i++){
+        let num = +(team2Names[i][1][2] + team2Names[i][1][3])
+        let realNum = num + 1
+        if(team2Names[i]){
+            let h3 = document.getElementById(`2team${i}`)
+            if(team2Names[i][1] === 'Curr'){
+                h3.innerText = team2Names[i][0] + ' ' + '2022-23'
+            }else{
+                h3.innerText = team2Names[i][0] + ' ' + team2Names[i][1] + '-' + realNum
+            }
+        }
+    }
+}
 
 function addToTeam1(){
     let nameArr = nameInput.value.split(' ')
@@ -51,18 +114,8 @@ function addToTeam1(){
     team1Names.push([nameInput.value, seasonValue])
     nameInput.value = ''
 
-    for(let i = 0; i < team1Names.length; i++){
-        if(team1Names[i]){
-            let h3 = document.getElementById(`1team${i}`)
-            if(team1Names[i][1] === 'Curr'){
-                h3.innerText = team1Names[i][0] + ' ' + '2022-23'
-            }else{
-                h3.innerText = team1Names[i][0] + ' ' + team1Names[i][1] + season.value[4] + season.value[5] + season.value[6]
-            }
-        }
-    }
+    displayTeam1()
 }
-
 
 function addToTeam2(){
     let nameArr = nameInput.value.split(' ')
@@ -83,16 +136,7 @@ function addToTeam2(){
     team2Names.push([nameInput.value, seasonValue])
     nameInput.value = ''
 
-    for(let i = 0; i < team2Names.length; i++){
-        if(team2Names[i]){
-            let h3 = document.getElementById(`2team${i}`)
-            if(team2Names[i][1] === 'Curr'){
-                h3.innerText = team2Names[i][0] + ' ' + '2022-23'
-            }else{
-                h3.innerText = team2Names[i][0] + ' ' + team2Names[i][1] + season.value[4] + season.value[5] + season.value[6]
-            }
-        }
-    }
+    displayTeam2()
 }
 
 function simulateGame(){
@@ -299,6 +343,9 @@ function saveTeam1(){
     }
     axios.post('http://localhost:5020/save-team-1', body).catch(err => console.log(err))
     teamNameInput.value = ''
+
+    // allTeams.innerHTML = ''
+    getSavedTeams()
 }
 
 function saveTeam2(){
@@ -312,10 +359,14 @@ function saveTeam2(){
     }
     axios.post('http://localhost:5020/save-team-2', body).catch(err => console.log(err))
     teamNameInput.value = ''
+
+    // allTeams.innerHTML = ''
+    getSavedTeams()
 }
 
 function useSavedTeamFor1(){
     let teamName = useSavedInput.value
+    // let teamName = document.getElementById('title').innerText
     axios.get(`http://localhost:5020/use-saved1/${teamName}`).then((res) => {
         for(let i = 1; i < 6; i++){
             if(res.data[0][`player_${i}`] !== 'undefined'){
@@ -339,6 +390,9 @@ function useSavedTeamFor1(){
                 }).catch(err => console.log(err))
             }
         }
+
+
+        displaySaved1()
         
     }).catch(err => console.log(err))
     useSavedInput.value = ''
@@ -371,6 +425,8 @@ function useSavedTeamFor2(){
                 }).catch(err => console.log(err))
             }
         }
+
+        displaySaved2()
         
     }).catch(err => console.log(err))
     useSavedInput.value = ''
@@ -404,7 +460,122 @@ function newGame(){
     team2Names = []
 }
 
+function getSavedTeams(){
+    // axios.get('http://localhost:5020/get-saved').then((res) => {
+    //     allTeams.innerHTML = ''
+    //     for(let i = 0; i < res.data.length; i++){
+    //         let teamName = res.data[i].team_name
+    //         let teamElem = 
+    //         `<section class="team">
+    //             <h1 id="title" class="title">${teamName}</h1>
+    //             <button id="use1" class="add-to-home">Home</button>
+    //             <button id="use2" class="add-to-away">Away</button>
+    //         </section>`
+    //         allTeams.innerHTML += teamElem
 
+
+    axios.get('http://localhost:5020/get-saved').then((res) => {
+        allTeams.innerHTML = ''
+        for(let i = 0; i < res.data.length; i++){
+            let teamName = res.data[i].team_name
+            let teamElem = 
+            `<section class="team">
+                <h1 id="title${i}" class="title">${teamName}</h1>
+                <button id="use${i}" class="add-to-home">Home</button>
+                <button id="uses${i}" class="add-to-away">Away</button>
+            </section>`
+            allTeams.innerHTML += teamElem
+
+            // let name = document.createElement('h1')
+            // name.textContent = teamName
+            // name.classList.add('title')
+
+
+            
+
+
+
+
+
+            function clickForHome(){
+                let teamName = document.getElementById(`title${i}`).innerText
+                axios.get(`http://localhost:5020/use-saved1/${teamName}`).then((res) => {
+                    for(let i = 1; i < 6; i++){
+                        if(res.data[0][`player_${i}`] !== 'undefined'){
+                            let splitData = (res.data[0][`player_${i}`]).split(',')
+                            team1Names.push(splitData)
+                            let nameUnderscore = splitData[0]
+                            let season = splitData[1]
+
+
+                            axios.get(`https://www.balldontlie.io/api/v1/players?search=${nameUnderscore}`).then((res) => {
+                                let playerId = '' + res.data.data[0].id
+                                let seasonAveragesURL = `https://www.balldontlie.io/api/v1/season_averages?player_ids[]=${playerId}`
+        
+                                if(season !== 'Curr'){
+                                    seasonAveragesURL = `https://www.balldontlie.io/api/v1/season_averages?` + `season=${season}&` + `player_ids[]=${playerId}`
+                                }
+        
+                                axios.get(seasonAveragesURL).then((res) => {
+                                    team1.push(res.data.data[0])
+                                }).catch(err => console.log(err))
+                            }).catch(err => console.log(err))
+                        }
+                    }
+
+
+                    displaySaved1()
+        
+                }).catch(err => console.log(err))
+            }
+
+            function clickForAway(){
+                let teamName = document.getElementById(`title${i}`).innerText
+                axios.get(`http://localhost:5020/use-saved1/${teamName}`).then((res) => {
+                    for(let i = 1; i < 6; i++){
+                        if(res.data[0][`player_${i}`] !== 'undefined'){
+                            let splitData = (res.data[0][`player_${i}`]).split(',')
+                            team2Names.push(splitData)
+                            let nameUnderscore = splitData[0]
+                            let season = splitData[1]
+
+
+                            axios.get(`https://www.balldontlie.io/api/v1/players?search=${nameUnderscore}`).then((res) => {
+                                let playerId = '' + res.data.data[0].id
+                                let seasonAveragesURL = `https://www.balldontlie.io/api/v1/season_averages?player_ids[]=${playerId}`
+        
+                                if(season !== 'Curr'){
+                                    seasonAveragesURL = `https://www.balldontlie.io/api/v1/season_averages?` + `season=${season}&` + `player_ids[]=${playerId}`
+                                }
+        
+                                axios.get(seasonAveragesURL).then((res) => {
+                                    team2.push(res.data.data[0])
+                                }).catch(err => console.log(err))
+                            }).catch(err => console.log(err))
+                        }
+                    }
+
+
+                    displaySaved2()
+        
+                }).catch(err => console.log(err))
+            }
+
+
+            let home = document.getElementById(`use${i}`)
+            let away = document.getElementById(`uses${i}`)
+            home.addEventListener('click', clickForHome)
+            away.addEventListener('click', clickForAway)
+
+
+
+
+
+        }
+    }).catch(err => console.log(err))
+}
+
+getSavedTeams()
 
 addPlTeam1.addEventListener('click', addToTeam1)
 addPlTeam2.addEventListener('click', addToTeam2)
@@ -416,7 +587,15 @@ useSavedBtn2.addEventListener('click', useSavedTeamFor2)
 deleteTeamBtn.addEventListener('click', deleteTeam)
 newGameBtn.addEventListener('click', newGame)
 
+// if(useSavedBtn1){
+//     useSavedBtn1.addEventListener('click', useSavedTeamFor1)
+// }
+
+// if(useSavedBtn2){
+//     useSavedBtn1.addEventListener('click', useSavedTeamFor2)
+// }
+
 
 
 seeTeam1Btn.addEventListener('click', () => console.log(team1))
-seeTeam2Btn.addEventListener('click', () => console.log(team2))
+seeTeam2Btn.addEventListener('click', () => console.log(team2Names))
