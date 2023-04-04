@@ -16,13 +16,6 @@ let teamNameInput = document.getElementById('team-name-input')
 let deleteTeamInput = document.getElementById('delete-team-input')
 let deleteTeamBtn = document.getElementById('delete-button')
 
-let useSavedInput = document.getElementById('use-saved-input')
-let useSavedBtn1 = document.getElementById('use-saved-button1')
-let useSavedBtn2 = document.getElementById('use-saved-button2')
-// let useSavedBtn1 = document.getElementById('use1')
-// let useSavedBtn2 = document.getElementById('use2')
-
-
 let newGameBtn = document.getElementById('new-game')
 
 let h1 = document.getElementById('winner')
@@ -115,6 +108,8 @@ function addToTeam1(){
     nameInput.value = ''
 
     displayTeam1()
+
+    season.value = 'Current Season'
 }
 
 function addToTeam2(){
@@ -137,6 +132,8 @@ function addToTeam2(){
     nameInput.value = ''
 
     displayTeam2()
+
+    season.value = 'Current Season'
 }
 
 function simulateGame(){
@@ -344,8 +341,7 @@ function saveTeam1(){
     axios.post('http://localhost:5020/save-team-1', body).catch(err => console.log(err))
     teamNameInput.value = ''
 
-    // allTeams.innerHTML = ''
-    getSavedTeams()
+    setTimeout(getSavedTeams, 20)
 }
 
 function saveTeam2(){
@@ -360,76 +356,7 @@ function saveTeam2(){
     axios.post('http://localhost:5020/save-team-2', body).catch(err => console.log(err))
     teamNameInput.value = ''
 
-    // allTeams.innerHTML = ''
-    getSavedTeams()
-}
-
-function useSavedTeamFor1(){
-    let teamName = useSavedInput.value
-    // let teamName = document.getElementById('title').innerText
-    axios.get(`http://localhost:5020/use-saved1/${teamName}`).then((res) => {
-        for(let i = 1; i < 6; i++){
-            if(res.data[0][`player_${i}`] !== 'undefined'){
-                let splitData = (res.data[0][`player_${i}`]).split(',')
-                team1Names.push(splitData)
-                let nameUnderscore = splitData[0]
-                let season = splitData[1]
-
-
-                axios.get(`https://www.balldontlie.io/api/v1/players?search=${nameUnderscore}`).then((res) => {
-                    let playerId = '' + res.data.data[0].id
-                    let seasonAveragesURL = `https://www.balldontlie.io/api/v1/season_averages?player_ids[]=${playerId}`
-        
-                    if(season !== 'Curr'){
-                        seasonAveragesURL = `https://www.balldontlie.io/api/v1/season_averages?` + `season=${season}&` + `player_ids[]=${playerId}`
-                    }
-        
-                    axios.get(seasonAveragesURL).then((res) => {
-                        team1.push(res.data.data[0])
-                    }).catch(err => console.log(err))
-                }).catch(err => console.log(err))
-            }
-        }
-
-
-        displaySaved1()
-        
-    }).catch(err => console.log(err))
-    useSavedInput.value = ''
-}
-
-function useSavedTeamFor2(){
-    let teamName = useSavedInput.value
-    axios.get(`http://localhost:5020/use-saved2/${teamName}`).then((res) => {
-        for(let i = 1; i < 6; i++){
-            if(res.data[0][`player_${i}`] !== 'undefined'){
-                let splitData = (res.data[0][`player_${i}`]).split(',')
-                team2Names.push(splitData)
-                let nameUnderscore = splitData[0]
-                let season = splitData[1]
-
-
-
-
-                axios.get(`https://www.balldontlie.io/api/v1/players?search=${nameUnderscore}`).then((res) => {
-                    let playerId = '' + res.data.data[0].id
-                    let seasonAveragesURL = `https://www.balldontlie.io/api/v1/season_averages?player_ids[]=${playerId}`
-        
-                    if(season !== 'Curr'){
-                        seasonAveragesURL = `https://www.balldontlie.io/api/v1/season_averages?` + `season=${season}&` + `player_ids[]=${playerId}`
-                    }
-        
-                    axios.get(seasonAveragesURL).then((res) => {
-                        team2.push(res.data.data[0])
-                    }).catch(err => console.log(err))
-                }).catch(err => console.log(err))
-            }
-        }
-
-        displaySaved2()
-        
-    }).catch(err => console.log(err))
-    useSavedInput.value = ''
+    setTimeout(getSavedTeams, 20)
 }
 
 function deleteTeam(){
@@ -461,44 +388,32 @@ function newGame(){
 }
 
 function getSavedTeams(){
-    // axios.get('http://localhost:5020/get-saved').then((res) => {
-    //     allTeams.innerHTML = ''
-    //     for(let i = 0; i < res.data.length; i++){
-    //         let teamName = res.data[i].team_name
-    //         let teamElem = 
-    //         `<section class="team">
-    //             <h1 id="title" class="title">${teamName}</h1>
-    //             <button id="use1" class="add-to-home">Home</button>
-    //             <button id="use2" class="add-to-away">Away</button>
-    //         </section>`
-    //         allTeams.innerHTML += teamElem
-
-
     axios.get('http://localhost:5020/get-saved').then((res) => {
         allTeams.innerHTML = ''
         for(let i = 0; i < res.data.length; i++){
             let teamName = res.data[i].team_name
-            let teamElem = 
-            `<section class="team">
-                <h1 id="title${i}" class="title">${teamName}</h1>
-                <button id="use${i}" class="add-to-home">Home</button>
-                <button id="uses${i}" class="add-to-away">Away</button>
-            </section>`
-            allTeams.innerHTML += teamElem
-
-            // let name = document.createElement('h1')
-            // name.textContent = teamName
-            // name.classList.add('title')
-
-
             
+            let section = document.createElement('section')
+            section.classList.add('team')
+            allTeams.appendChild(section)
 
+            let name = document.createElement('h1')
+            name.textContent = teamName
+            name.classList.add('title')
+            section.appendChild(name)
 
+            let button1 = document.createElement('button')
+            button1.textContent = 'Home'
+            button1.classList.add('add-to-home')
+            section.appendChild(button1)
 
+            let button2 = document.createElement('button')
+            button2.textContent = 'away'
+            button2.classList.add('add-to-away')
+            section.appendChild(button2)
 
 
             function clickForHome(){
-                let teamName = document.getElementById(`title${i}`).innerText
                 axios.get(`http://localhost:5020/use-saved1/${teamName}`).then((res) => {
                     for(let i = 1; i < 6; i++){
                         if(res.data[0][`player_${i}`] !== 'undefined'){
@@ -530,7 +445,6 @@ function getSavedTeams(){
             }
 
             function clickForAway(){
-                let teamName = document.getElementById(`title${i}`).innerText
                 axios.get(`http://localhost:5020/use-saved1/${teamName}`).then((res) => {
                     for(let i = 1; i < 6; i++){
                         if(res.data[0][`player_${i}`] !== 'undefined'){
@@ -562,14 +476,8 @@ function getSavedTeams(){
             }
 
 
-            let home = document.getElementById(`use${i}`)
-            let away = document.getElementById(`uses${i}`)
-            home.addEventListener('click', clickForHome)
-            away.addEventListener('click', clickForAway)
-
-
-
-
+            button1.addEventListener('click', clickForHome)
+            button2.addEventListener('click', clickForAway)
 
         }
     }).catch(err => console.log(err))
@@ -582,20 +490,10 @@ addPlTeam2.addEventListener('click', addToTeam2)
 simulateBtn.addEventListener('click', simulateGame)
 saveTeam1Btn.addEventListener('click', saveTeam1)
 saveTeam2Btn.addEventListener('click', saveTeam2)
-useSavedBtn1.addEventListener('click', useSavedTeamFor1)
-useSavedBtn2.addEventListener('click', useSavedTeamFor2)
 deleteTeamBtn.addEventListener('click', deleteTeam)
 newGameBtn.addEventListener('click', newGame)
 
-// if(useSavedBtn1){
-//     useSavedBtn1.addEventListener('click', useSavedTeamFor1)
-// }
-
-// if(useSavedBtn2){
-//     useSavedBtn1.addEventListener('click', useSavedTeamFor2)
-// }
 
 
-
-seeTeam1Btn.addEventListener('click', () => console.log(team1))
+seeTeam1Btn.addEventListener('click', () => console.log(team1Names))
 seeTeam2Btn.addEventListener('click', () => console.log(team2Names))
