@@ -73,6 +73,20 @@ sequelize = new Sequelize(CONNECTION_URL, {
             res.status(200).send(dbres[0])
         }).catch(err => console.log(err))
     },
+    updateTeam: (req, res) => {
+        const {teamName, name0, name1, name2, name3, name4} = req.body
+        sequelize.query(`
+            UPDATE teams
+            SET player_1 = '${name0}',
+            player_2 = '${name1}',
+            player_3 = '${name2}',
+            player_4 = '${name3}',
+            player_5 = '${name4}'
+            WHERE team_name = '${teamName}'
+        `).then(dbres => {
+            res.status(200).send(dbres[0])
+        }).catch(err => console.log(err))
+    },
     deleteTeam: (req, res) => {
         const {teamName} = req.params
         sequelize.query(`

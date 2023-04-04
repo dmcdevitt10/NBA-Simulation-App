@@ -60,6 +60,10 @@ function displaySaved1(){
     for(let i = 0; i < team1Names.length; i++){
         let num = +(team1Names[i][1][2] + team1Names[i][1][3])
         let realNum = num + 1
+        realNum += ''
+        if(realNum.length === 1){
+            realNum = '0' + realNum
+        }
         if(team1Names[i]){
             let h3 = document.getElementById(`1team${i}`)
             if(team1Names[i][1] === 'Curr'){
@@ -75,6 +79,10 @@ function displaySaved2(){
     for(let i = 0; i < team2Names.length; i++){
         let num = +(team2Names[i][1][2] + team2Names[i][1][3])
         let realNum = num + 1
+        realNum += ''
+        if(realNum.length === 1){
+            realNum = '0' + realNum
+        }
         if(team2Names[i]){
             let h3 = document.getElementById(`2team${i}`)
             if(team2Names[i][1] === 'Curr'){
@@ -341,7 +349,7 @@ function saveTeam1(){
     axios.post('http://localhost:5020/save-team-1', body).catch(err => console.log(err))
     teamNameInput.value = ''
 
-    setTimeout(getSavedTeams, 20)
+    setTimeout(getSavedTeams, 250)
 }
 
 function saveTeam2(){
@@ -356,13 +364,7 @@ function saveTeam2(){
     axios.post('http://localhost:5020/save-team-2', body).catch(err => console.log(err))
     teamNameInput.value = ''
 
-    setTimeout(getSavedTeams, 20)
-}
-
-function deleteTeam(){
-    let teamName = deleteTeamInput.value
-    axios.delete(`http://localhost:5020/delete/${teamName}`).catch(err => console.log(err))
-    deleteTeamInput.value = ''
+    setTimeout(getSavedTeams, 250)
 }
 
 function newGame(){
@@ -490,7 +492,6 @@ addPlTeam2.addEventListener('click', addToTeam2)
 simulateBtn.addEventListener('click', simulateGame)
 saveTeam1Btn.addEventListener('click', saveTeam1)
 saveTeam2Btn.addEventListener('click', saveTeam2)
-deleteTeamBtn.addEventListener('click', deleteTeam)
 newGameBtn.addEventListener('click', newGame)
 
 
