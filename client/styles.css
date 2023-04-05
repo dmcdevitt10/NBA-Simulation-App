@@ -2,6 +2,7 @@ body {
     background-color: white;
     display: flex;
     margin: 0;
+    font-family: 'Graduate', cursive;
 }
 
 
@@ -12,7 +13,7 @@ header {
     height: 90px;
     width: 100%;
     top: 0px;
-    border-bottom: 1px solid #000000;
+    border-bottom: 2px solid #000000;
 }
 
 nav {
@@ -22,7 +23,7 @@ nav {
 }
 
 .page {
-    color: rgb(237, 233, 233);
+    color: white;
     font-size: 19px;
     display: inline;
     margin-right: 2em;
@@ -64,7 +65,7 @@ nav {
 .saved-tag {
     position: absolute;
     top: 35px;
-    left: 50px;
+    left: 33px;
     top: 15px;
     font-size: 27px;
 }
@@ -148,7 +149,7 @@ nav {
     width: 738.5px;
     left: 253px;
     bottom: 0px;
-    border: 1px solid black;
+    border: 2px solid black;
     z-index: -1;
     
 }
@@ -156,11 +157,10 @@ nav {
 .all-teams {
     background-color: rgb(237, 233, 233);
     position: absolute;
-    background-color: ;
     height: 400px;
     width: 250px;
     bottom: 0px;
-    border: 1px solid black;
+    border: 2px solid black;
     z-index: -1;
     display: flex;
     flex-direction: column;
@@ -170,7 +170,7 @@ nav {
     position: relative;
     height: 65px;
     width: 250px;
-    border-bottom: 1px solid black;
+    border-bottom: 2px solid black;
 }
 
 .title {
@@ -206,7 +206,7 @@ nav {
 
 .names {
     height: 400px;
-    width: 70px;
+    width: 90px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -229,19 +229,19 @@ nav {
 
 #team2-big {
     position: absolute;
-    right: 6%;
+    right: 8%;
 }
 
 .home {
     position: absolute;
     left: 4px;
-    top: -23px;
+    top: -24px;
     font-size: 30px;
 }
 
 .away {
     position: absolute;
-    right: 4px;
+    right: 3.5px;
     top: -26px;
     font-size: 30px;
 }
@@ -256,8 +256,8 @@ nav {
 .line {
     position: absolute;
     background-color: black;
-    height: 1px;
-    width: 993px;
+    height: 2px;
+    width: 994px;
     top: 175px;
     left: 225px;
     z-index: 1;
@@ -266,7 +266,7 @@ nav {
 .left-line {
     background-color: #000000;
     position: absolute;
-    width: 1px;
+    width: 2px;
     height: 90px;
     left: 225px;
     top: 175px;
@@ -275,19 +275,19 @@ nav {
 .right-line {
     background-color: #000000;
     position: absolute;
-    width: 1px;
+    width: 2px;
     height: 90px;
-    right: 221.5px;
+    right: 219.5px;
     top: 175px;
 }
 
 .middle-line {
     background-color: #000000;
     position: absolute;
-    width: 1px;
+    width: 2px;
     height: 90px;
     top: 175px;
-    left: 476px;
+    left: 477px;
 }
 
 .middle-bar {
@@ -360,8 +360,8 @@ nav {
 }
 
 .page-2-player {
-    font-size: 18px;
-    margin-bottom: -15px;
+    font-size: 15px;
+    margin-bottom: -10px;
     left: 10px;
 }
 
@@ -506,6 +506,8 @@ nav {
     border-radius: 20px;
     color: #F98E23;
     height: 23px;
+    box-shadow: 1px 1px 15px rgb(178, 177, 177);
+    font-family: 'Roboto', sans-serif;
  }
 
  button:hover {
@@ -517,12 +519,15 @@ nav {
 
  input {
     border: 1px solid #F98E23;
-    border-radius: 20px;
     height: 17px;
+    box-shadow: 1px 1px 15px rgb(178, 177, 177);
+    font-family: 'Roboto', sans-serif;
  }
 
  select {
     background-color: white;
     color: #F98E23;
     border: 1px solid #F98E23;
+    box-shadow: 1px 1px 15px rgb(178, 177, 177);
+    font-family: 'Roboto', sans-serif;
  }
