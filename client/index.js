@@ -496,5 +496,5 @@ newGameBtn.addEventListener('click', newGame)
 
 
 
-seeTeam1Btn.addEventListener('click', () => console.log(team1))
-seeTeam2Btn.addEventListener('click', () => console.log(team2))
+// seeTeam1Btn.addEventListener('click', () => console.log(team1))
+// seeTeam2Btn.addEventListener('click', () => console.log(team2))

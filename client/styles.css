@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(237, 233, 233);
+    background-color: white;
     display: flex;
     margin: 0;
 }
@@ -64,7 +64,8 @@ nav {
 .saved-tag {
     position: absolute;
     top: 35px;
-    left: 1px;
+    left: 50px;
+    top: 15px;
     font-size: 27px;
 }
 
@@ -79,48 +80,49 @@ nav {
 
 .player-input {
     position: absolute;
-    top: 35px;
+    top: 32px;
     left: 1px;
     width: 115px;
+    left: 6px;
 }
 
 .season {
     position: absolute;
-    top: 35px;
-    left: 126px;
+    top: 32px;
+    left: 132px;
     height: 21px;
     width: 55px;
 }
 
 .add1 {
     position: absolute;
-    bottom: 4px;
-    left: 1px;
+    bottom: 7px;
+    left: 6px;
 }
 
 .add2 {
     position: absolute;
-    bottom: 4px;
-    left: 93px;
+    bottom: 7px;
+    left: 99px;
 }
 
 
 
 .save1 {
     position: absolute;
-    top: 35px;
+    top: 32px;
     left: 34%;
 }
 
 .save2 {
     position: absolute;
-    top: 35px;
+    top: 32px;
     left: 50%;
 }
 
 .team-input {
     position: absolute;
-    bottom: 4px;
+    bottom: 7px;
     left: 42%;
     width: 115px;
 }
@@ -129,13 +131,13 @@ nav {
 
 .simulate {
     position: absolute;
-    right: 1px;
-    top: 35px;
+    right: 6px;
+    top: 32px;
 }
 .new-game{
     position: absolute;
-    right: 1px;
-    bottom: 4px;
+    right: 6px;
+    bottom: 7px;
 }
 
 
@@ -152,8 +154,9 @@ nav {
 }
 
 .all-teams {
+    background-color: rgb(237, 233, 233);
     position: absolute;
-    background-color: rgb(170, 168, 168);
+    background-color: ;
     height: 400px;
     width: 250px;
     bottom: 0px;
@@ -250,6 +253,53 @@ nav {
     font-size: 38px;
 }
 
+.line {
+    position: absolute;
+    background-color: black;
+    height: 1px;
+    width: 993px;
+    top: 175px;
+    left: 225px;
+    z-index: 1;
+}
+
+.left-line {
+    background-color: #000000;
+    position: absolute;
+    width: 1px;
+    height: 90px;
+    left: 225px;
+    top: 175px;
+}
+
+.right-line {
+    background-color: #000000;
+    position: absolute;
+    width: 1px;
+    height: 90px;
+    right: 221.5px;
+    top: 175px;
+}
+
+.middle-line {
+    background-color: #000000;
+    position: absolute;
+    width: 1px;
+    height: 90px;
+    top: 175px;
+    left: 476px;
+}
+
+.middle-bar {
+    position: absolute;
+    background-color: rgb(237, 233, 233);
+    height: 70px;
+    width: 993px;
+    left: 225px;
+    top: 175px;
+    z-index: -2;
+}
+
 
 
 
@@ -265,7 +315,7 @@ nav {
 
 .square {
     position: absolute;
-    background-color: white;
+    background-color: rgb(237, 233, 233);
     height: 600px;
     width: 1176px;
     border: 2px solid #F98E23;
@@ -277,7 +327,7 @@ nav {
 }
 
 .page-2-team {
-    background-color: rgb(237, 233, 233);
+    background-color: white;
     position: relative;
     height: 270px;
     width: 235px;
@@ -326,6 +376,7 @@ nav {
 }
 
 .edit {
+    background-color: rgb(252, 249, 249);
     position: absolute;
     height: 20px;
     left: 25%;
@@ -333,6 +384,7 @@ nav {
 }
 
 .delete {
+    background-color: rgb(252, 249, 249);
     position: absolute;
     height: 20px;
     left: 51%;
@@ -359,7 +411,7 @@ nav {
     justify-content: center;
 }
 .player-square {
-    background-color: white;
+    background-color: rgb(237, 233, 233);
     position: absolute;
     height: 600px;
     width: 37%;
@@ -369,6 +421,7 @@ nav {
 }
 
 .page3-input {
+    background-color: rgb(252, 249, 249);
     position: absolute;
     top: 118px;
     width: 115px;
@@ -376,11 +429,13 @@ nav {
 }
 
 .page3-season {
+    background-color: rgb(252, 249, 249);
     position: absolute;
     top: 118px;
     height: 21.6px;
 }
  .get-player-btn {
+    background-color: rgb(252, 249, 249);
     position: absolute;
     top: 118px;
     margin-left: 200px;
@@ -443,4 +498,31 @@ nav {
     position: absolute;
     font-size: 33px;
     bottom: 0px;
+ }
+
+ button {
+    background-color: white;
+    border:1px solid #F98E23;
+    border-radius: 20px;
+    color: #F98E23;
+    height: 23px;
+ }
+
+ button:hover {
+    background-color: #F98E23;
+    color: white;
+ }
+
+
+
+ input {
+    border: 1px solid #F98E23;
+    border-radius: 20px;
+    height: 17px;
+ }
+
+ select {
+    background-color: white;
+    color: #F98E23;
+    border: 1px solid #F98E23;
  }
