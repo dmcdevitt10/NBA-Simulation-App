@@ -4,38 +4,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home</title>
+
     <link rel="stylesheet" href="styles.css"/>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Graduate&display=swap" rel="stylesheet">
 </head>
-<body>
-    <header>
-        <!-- <button id="see-team1">See team1</button>
-        <button id="see-team2">See team2</button> -->
 
+<body>
+
+    <header>
         <nav class=".nav">
             <a href="./index.html" class="page">Home</a>
             <a href="./teams.html" class="page">Teams</a>
             <a href="./stats.html" class="page">Stats</a>
         </nav>
-
-
-
+        <img class="logo" src="logo.png">
     </header>
-    <div class="line"></div>
-    <div class="left-line"></div>
-    <div class="right-line"></div>
-    <div class="middle-line"></div>
-    <div class="middle-bar"></div>
-
-
-
-
+    
     <div class="court-teams">
         <section class="inputs-bar">
             <aside class="teams-header">
@@ -89,6 +81,7 @@
                     <option>1980-81</option>
                     <option>1979-80</option>
                 </select>
+
                 <button id="team1" class="add1">add to home</button>
                 <button id="team2" class="add2">add to away</button>
 
@@ -98,34 +91,12 @@
 
                 <button id="simulate" class="simulate">Simulate</button>
                 <button id="new-game" class="new-game">New Game</button>
+
             </aside>
         </section>
 
-
-        <div id="all-teams" class="all-teams">
-            <!-- <section class="team">
-                <h1 class="title">Fireballaaa</h1>
-                <button class="add-to-home">Home</button>
-                <button class="add-to-away">Away</button>
-            </section>
-            <section class="team">
-                <h1 class="title">Fireballaaa</h1>
-                <button class="add-to-home">Home</button>
-                <button class="add-to-away">Away</button>
-            </section>
-            <section class="team">
-                <h1 class="title">Fireballaaa</h1>
-                <button class="add-to-home">Home</button>
-                <button class="add-to-away">Away</button>
-            </section> -->
-        </div>
-
-
+        <div id="all-teams" class="all-teams"></div>
         <img src="orange1-court.png" class="court">
-
-
-
-
 
         <div class="game">
             <h1 class="home">Home</h2>
@@ -151,15 +122,12 @@
             </section>
         </div>
 
-        
-
-
-
-
-
-
     </div>
-
+    <div class="line"></div>
+    <div class="left-line"></div>
+    <div class="right-line"></div>
+    <div class="middle-line"></div>
+    <div class="middle-bar"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="index.js"></script>

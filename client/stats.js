@@ -35,7 +35,7 @@ function getPlayer(){
                         <h1 class="stat">AST: ${res.data.data[0].ast}</h1>
                         <h1 class="stat">BLK: ${res.data.data[0].blk}</h1>
                         <h1 class="stat">DREB: ${res.data.data[0].dreb}</h1>
-                        <h1 class="stat">3PT%:${res.data.data[0].fg3_pct}</h1>
+                        <h1 class="stat">3PT%: ${res.data.data[0].fg3_pct}</h1>
                         <h1 class="stat">3PA: ${res.data.data[0].fg3a}</h1>
                         <h1 class="stat">3PM: ${res.data.data[0].fg3m}</h1>
                         <h1 class="stat">FG%: ${res.data.data[0].fg_pct}</h1>

@@ -16,6 +16,13 @@ header {
     border-bottom: 2px solid #000000;
 }
 
+.logo {
+    position: absolute;
+    top: 7px;
+    left: 265px;
+    height: 76px;
+}
+
 nav {
     position: absolute;
     right:110px;
@@ -97,13 +104,13 @@ nav {
 
 .add1 {
     position: absolute;
-    bottom: 7px;
+    bottom: 8px;
     left: 6px;
 }
 
 .add2 {
     position: absolute;
-    bottom: 7px;
+    bottom: 8px;
     left: 99px;
 }
 
@@ -123,7 +130,7 @@ nav {
 
 .team-input {
     position: absolute;
-    bottom: 7px;
+    bottom: 8px;
     left: 42%;
     width: 115px;
 }
@@ -138,7 +145,7 @@ nav {
 .new-game{
     position: absolute;
     right: 6px;
-    bottom: 7px;
+    bottom: 8px;
 }
 
 
@@ -363,6 +370,7 @@ nav {
     font-size: 15px;
     margin-bottom: -10px;
     left: 10px;
+    color: #323232;
 }
 
 .bottom {
@@ -487,11 +495,13 @@ nav {
  .stat {
     position: relative;
     margin-bottom: -8px;
+    color: #323232;
  }
 
  .stat1 {
     position: relative;
     margin-bottom: -8px;
+    color: #323232;
  }
 
  .season-display {
