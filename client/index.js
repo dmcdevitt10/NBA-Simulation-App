@@ -324,15 +324,15 @@ function simulateGame(){
 
     if(team1Score === team2Score){
         if(team1Av[9] > team2Av[9]){
-            h1.innerText = 'Team 1 Wins!'
+            h1.innerText = 'Home Team Wins!'
         }else{
-            h1.innerText = 'Team 2 Wins!'
+            h1.innerText = 'Away Team Wins!'
         }
     }else{
         if(team1Score > team2Score){
-            h1.innerText = 'Team 1 Wins!'
+            h1.innerText = 'Home Team Wins!'
         }else{
-            h1.innerText = 'Team 2 Wins!'
+            h1.innerText = 'Away Team Wins!'
         }
     }
 }
