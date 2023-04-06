@@ -518,6 +518,7 @@ nav {
     height: 23px;
     box-shadow: 1px 1px 15px rgb(178, 177, 177);
     font-family: 'Roboto', sans-serif;
+    transition: all .3s ease;
  }
 
  button:hover {
