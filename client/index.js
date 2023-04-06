@@ -349,7 +349,7 @@ function saveTeam1(){
     axios.post('http://localhost:5020/save-team-1', body).catch(err => console.log(err))
     teamNameInput.value = ''
 
-    setTimeout(getSavedTeams, 250)
+    setTimeout(getSavedTeams, 175)
 }
 
 function saveTeam2(){
@@ -364,7 +364,7 @@ function saveTeam2(){
     axios.post('http://localhost:5020/save-team-2', body).catch(err => console.log(err))
     teamNameInput.value = ''
 
-    setTimeout(getSavedTeams, 250)
+    setTimeout(getSavedTeams, 175)
 }
 
 function newGame(){
@@ -493,8 +493,3 @@ simulateBtn.addEventListener('click', simulateGame)
 saveTeam1Btn.addEventListener('click', saveTeam1)
 saveTeam2Btn.addEventListener('click', saveTeam2)
 newGameBtn.addEventListener('click', newGame)
-
-
-
-// seeTeam1Btn.addEventListener('click', () => console.log(team1))
-// seeTeam2Btn.addEventListener('click', () => console.log(team2))
