@@ -25,6 +25,9 @@ let allTeams = document.getElementById('all-teams')
 
 
 
+
+
+
 let team1 = []
 let team2 = []
 let team1Names = []

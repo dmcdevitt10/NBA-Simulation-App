@@ -23,7 +23,6 @@ function getPlayer(){
             if(num === 'Current Season'){
                 num = '2022-23'
             }
-            console.log(res.data.data[0])
             playerSquare.innerHTML = ''
             let playerElem =`
                 <section class="page3-top">
